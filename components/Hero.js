@@ -8,7 +8,7 @@ export default function Hero() {
         {/* Left Illustration */}
         <div className="flex justify-center md:justify-start">
           <Image
-            src="/hero.png"
+            src="/hero.jpg"
             alt="Somhay Hero Illustration"
             width={500}
             height={400}
