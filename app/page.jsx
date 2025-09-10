@@ -20,7 +20,7 @@ export default function HomePage() {
           Ready to grow your business with Somhay?
         </h2>
         <p className="mt-4 text-lg max-w-2xl mx-auto">
-          Get reliable access to global products today. Connect with suppliers, simplify logistics, and make secure payments—all in one place.
+          Get reliable access to global products today. Connect with suppliers, simplify logistics, and make secure payments all in one place.
         </p>
         <div className="mt-8">
           <a

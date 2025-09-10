@@ -1,34 +1,56 @@
+import Image from "next/image";
+
 export default function Hero() {
   return (
-    <section className="relative bg-gray-950 text-white min-h-[85vh] flex items-center">
-      <div className="max-w-6xl mx-auto px-6 text-center">
+    <section className="bg-[#051821] text-white py-16">
+      <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
         
-        {/* Heading */}
-        <h1 className="text-4xl md:text-6xl font-extrabold leading-tight">
-          Global Products, Local Access
-        </h1>
+        {/* Left Illustration */}
+        <div className="flex justify-center md:justify-start">
+          <Image
+            src="/hero.png"
+            alt="Somhay Hero Illustration"
+            width={500}
+            height={400}
+            className="w-full max-w-md object-contain"
+            priority
+          />
+        </div>
 
-        {/* Short Business Paragraph */}
-        <p className="mt-6 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
-          Somhay connects businesses in emerging markets with trusted Chinese suppliers. 
-          From sourcing and logistics to secure payments, we make global trade simple, 
-          affordable, and reliable. so you can focus on growing your business.
-        </p>
+        {/* Right Content */}
+        <div className="text-center md:text-left">
+          {/* Tagline */}
+          <p className="text-[#477CAA] font-medium text-sm uppercase tracking-wide">
+            Global products, local access
+          </p>
 
-        {/* CTA Buttons */}
-        <div className="mt-10 flex justify-center space-x-4">
-          <a
-            href="/about"
-            className="bg-[#4169E1] hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium text-lg transition"
-          >
-            Learn More
-          </a>
-          <a
-            href="/contact"
-            className="bg-gray-800 hover:bg-gray-700 text-white px-8 py-3 rounded-lg font-medium text-lg transition"
-          >
-            Get in Touch
-          </a>
+          {/* Headline */}
+          <h1 className="mt-3 text-3xl md:text-5xl font-extrabold leading-tight">
+            Simplifying Global Trade for Local Businesses
+          </h1>
+
+          {/* Description */}
+          <p className="mt-5 text-gray-300 text-lg max-w-xl">
+            Somhay bridges businesses in Somalia with trusted Chinese suppliers. 
+            We handle sourcing, logistics, and secure payments so you can focus 
+            on growing without the hidden costs or risks of global trade.
+          </p>
+
+          {/* CTA Buttons */}
+          <div className="mt-8 flex flex-col sm:flex-row gap-4 sm:justify-start justify-center">
+            <a
+              href="/contact"
+              className="bg-[#477CAA] hover:bg-[#35607C] text-white px-6 py-3 rounded-lg font-medium text-lg transition"
+            >
+              Get Started
+            </a>
+            <a
+              href="/about"
+              className="bg-gray-800 hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-medium text-lg transition"
+            >
+              Discover More..
+            </a>
+          </div>
         </div>
       </div>
     </section>
