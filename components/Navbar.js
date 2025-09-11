@@ -2,6 +2,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { Menu, X } from "lucide-react";
+import { useState } from "react";
 
 const navItems = [
   { name: "Home", href: "/" },
@@ -12,6 +14,7 @@ const navItems = [
 
 export default function Navbar() {
   const pathname = usePathname();
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
     <nav className="bg-gray-900 text-white shadow-md sticky top-0 z-50">
@@ -19,11 +22,11 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2">
           <Image src="/logo.png" alt="Logo" width={40} height={40} />
-          <span className="font-bold text-xl text-white">Somhay</span>
+          <span className="font-bold text-xl">Somhay</span>
         </Link>
 
-        {/* Nav Links */}
-        <div className="flex space-x-6">
+        {/* Desktop Nav Links */}
+        <div className="hidden md:flex items-center space-x-6">
           {navItems.map((item) => (
             <Link
               key={item.name}
@@ -37,8 +40,53 @@ export default function Navbar() {
               {item.name}
             </Link>
           ))}
+
+          {/* CTA Button */}
+          <Link
+            href="/contact"
+            className="ml-4 px-4 py-2 rounded-lg bg-[#4169E1] hover:bg-blue-600 text-white font-medium transition"
+          >
+            Chat Now
+          </Link>
         </div>
+
+        {/* Mobile Hamburger */}
+        <button
+          onClick={() => setMobileOpen(!mobileOpen)}
+          className="md:hidden focus:outline-none"
+        >
+          {mobileOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
       </div>
+
+      {/* Mobile Menu */}
+      {mobileOpen && (
+        <div className="md:hidden bg-gray-800 px-6 py-4 space-y-4">
+          {navItems.map((item) => (
+            <Link
+              key={item.name}
+              href={item.href}
+              onClick={() => setMobileOpen(false)}
+              className={`block transition-colors ${
+                pathname === item.href
+                  ? "text-[#4169E1] font-semibold"
+                  : "text-gray-300 hover:text-white"
+              }`}
+            >
+              {item.name}
+            </Link>
+          ))}
+
+          {/* CTA Button (mobile) */}
+          <Link
+            href="/contact"
+            onClick={() => setMobileOpen(false)}
+            className="block w-full text-center px-4 py-2 rounded-lg bg-[#4169E1] hover:bg-blue-600 text-white font-medium transition"
+          >
+            Chat Now
+          </Link>
+        </div>
+      )}
     </nav>
   );
 }
