@@ -1,6 +1,7 @@
 import Hero from "@/components/Hero";
 import Operation from "@/components/Operation";  // 
 import Process from "@/components/Process";
+import WhyUs from "@/components/WhyUs";
 
 export default function HomePage() {
   return (
@@ -13,6 +14,7 @@ export default function HomePage() {
 
       {/* Process Section */}
       <Process />
+      <WhyUs />
 
       {/* CTA Banner */}
       <section className="bg-[#4169E1] py-16 mt-16 text-center text-white">
