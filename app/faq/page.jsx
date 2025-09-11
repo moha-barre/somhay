@@ -1,6 +1,6 @@
 
 "use client";
-import Faq "@/components/Faq";
+import Faq from "@/components/Faq";
 import Condition from "@/components/Condition"; 
 
 export default function FaqPage() {
