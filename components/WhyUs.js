@@ -1,48 +1,41 @@
-"use client";
-import Image from "next/image";
-import { Users, Globe, Target, Lightning, Shield, ArrowDown } from "lucide-react";
+"use client"
+import { Users, Globe, Target, CloudLightning, Shield, ArrowDown } from "lucide-react";
 
-export default function WhyUs() {
-  const features = [
-    {
-      id: 1,
-      title: "Trusted Partners",
-      desc: "We carefully vet suppliers for quality you can rely on.",
-      icon: <Users className="w-8 h-8 text-blue-500" />,
-    },
-    {
-      id: 2,
-      title: "Global Connections",
-      desc: "Seamlessly connecting Somalia and China for business success.",
-      icon: <Globe className="w-8 h-8 text-green-500" />,
-    },
-    {
-      id: 3,
-      title: "Transparent Process",
-      desc: "Track every step from order to delivery with full clarity.",
-      icon: <Target className="w-8 h-8 text-yellow-500" />,
-    },
-    {
-      id: 4,
-      title: "Fast & Flexible",
-      desc: "Quick response times and adaptable solutions for your needs.",
-      icon: <Lightning className="w-8 h-8 text-purple-500" />,
-    },
-    {
-      id: 5,
-      title: "Secure & Reliable",
-      desc: "Your business is in safe hands with our trusted operations.",
-      icon: <Shield className="w-8 h-8 text-red-500" />,
-    },
-  ];
+const features = [
+  {
+    id: 1,
+    title: "Trusted Partners",
+    desc: "We carefully vet suppliers for quality you can rely on.",
+    icon: <Users className="w-8 h-8 text-blue-500" />,
+  },
+  {
+    id: 2,
+    title: "Global Connections",
+    desc: "Seamlessly connecting Somalia and China for business success.",
+    icon: <Globe className="w-8 h-8 text-green-500" />,
+  },
+  {
+    id: 3,
+    title: "Transparent Process",
+    desc: "Track every step from order to delivery with full clarity.",
+    icon: <Target className="w-8 h-8 text-yellow-500" />,
+  },
+  {
+    id: 4,
+    title: "Fast & Flexible",
+    desc: "Quick response times and adaptable solutions for your needs.",
+    icon: <CloudLightning className="w-8 h-8 text-purple-500" />,
+  },
+  {
+    id: 5,
+    title: "Secure & Reliable",
+    desc: "Your business is in safe hands with our trusted operations.",
+    icon: <Shield className="w-8 h-8 text-red-500" />,
+  },
+];
 
   // Scroll to Process section
-  const scrollToProcess = () => {
-    const processSection = document.getElementById("process");
-    if (processSection) {
-      processSection.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  
 
   return (
     <section className="bg-[#051821] text-white py-16 px-6 md:px-16">
@@ -58,7 +51,7 @@ export default function WhyUs() {
 
           {/* CTA at the top */}
           <button
-            onClick={scrollToProcess}
+            
             className="mt-4 flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg transition"
           >
             See Our Process
