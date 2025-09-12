@@ -3,10 +3,15 @@ import Operation from "@/components/Operation";  //
 import Process from "@/components/Process";
 import WhyUs from "@/components/WhyUs";
 import SEO from "@/components/SEO"
+import Head from "next/head";
+
 
 export default function HomePage() {
   return (
     <>
+    <Head>
+            <meta name="google-site-verification" content="WdnT6pwogkSSvv8-uE3E8YpEUcuiwg1I3CH-I9dC3qQ" />
+      </Head>
     <SEO
   title="Somhay - Global Sourcing & Product Delivery Services"
   description="Somhay helps you source products from marketplaces like 1688 and Alibaba quickly and reliably. Get high-quality products delivered to your doorstep."
