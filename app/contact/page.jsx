@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import SEO from "@components/SEO"
+import SEO from "@/components/SEO"
 import Process from "@/components/Process";
 
 export default function ContactPage() {

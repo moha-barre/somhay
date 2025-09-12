@@ -2,7 +2,7 @@ import Hero from "@/components/Hero";
 import Operation from "@/components/Operation";  // 
 import Process from "@/components/Process";
 import WhyUs from "@/components/WhyUs";
-import SEO from "@components/SEO"
+import SEO from "@/components/SEO"
 
 export default function HomePage() {
   return (

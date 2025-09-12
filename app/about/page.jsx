@@ -2,7 +2,7 @@
 import Image from "next/image";
 import 
 { DollarSign, Clock, Shield, Package, Globe, Target, Sunrise } from "lucide-react";
-import SEO from "@components/SEO"
+import SEO from "@/components/SEO"
 
 // Hero Section
 function HeroSection() {

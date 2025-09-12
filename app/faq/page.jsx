@@ -2,7 +2,7 @@
 "use client";
 import Faq from "@/components/Faq";
 import Condition from "@/components/Condition";
-import SEO from "@components/SEO"
+import SEO from "@/components/SEO"
 
 export default function FaqPage() {
   
@@ -12,7 +12,7 @@ export default function FaqPage() {
   title="Somhay FAQ & Terms - Sourcing & Delivery Information"
   description="Find answers to common questions about sourcing products from 1688 and Alibaba, delivery times, and Somhay's terms and conditions."
   keywords="Somhay FAQ, terms and conditions, 1688 sourcing questions, Alibaba sourcing FAQ, delivery policies"
-  image="/images/faq.jpg"
+  image="/nego.jpg"
   url="https://somhay.vercel.app/faq"
 />
     <div className="bg-white">
