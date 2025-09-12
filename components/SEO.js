@@ -27,6 +27,7 @@ export default function SEO({
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
+      <meta name="google-site-verification" content="WdnT6pwogkSSvv8-uE3E8YpEUcuiwg1I3CH-I9dC3qQ" />
     </Head>
   );
 }
