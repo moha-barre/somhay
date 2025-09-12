@@ -2,6 +2,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import SEO from "@components/SEO"
+import Process from "@/components/Process";
 
 export default function ContactPage() {
   const [form, setForm] = useState({
@@ -22,6 +24,14 @@ export default function ContactPage() {
   };
 
   return (
+    <>
+    <SEO
+  title="Contact Somhay & Process - Get in Touch and Learn How We Work"
+  description="Reach out to Somhay for sourcing products or inquiries. Learn about our professional step-by-step process for sourcing and delivery."
+  keywords="contact Somhay, product sourcing inquiry, 1688 Alibaba contact, sourcing process, delivery process"
+  image="/contact.jpg"
+  url="https://somhay.vercel.app/contact"
+/>
     <div className="min-h-screen bg-[#051821] text-white">
       {/* Hero Section */}
       <div className="relative w-full h-64 md:h-96">
@@ -115,5 +125,8 @@ export default function ContactPage() {
         </div>
       </div>
     </div>
+
+    <Process/>
+    </>
   );
 }

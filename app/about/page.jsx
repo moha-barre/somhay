@@ -1,10 +1,13 @@
 "use client";
 import Image from "next/image";
-import { DollarSign, Clock, Shield, Package, Globe, Target, Sunrise } from "lucide-react";
+import 
+{ DollarSign, Clock, Shield, Package, Globe, Target, Sunrise } from "lucide-react";
+import SEO from "@components/SEO"
 
 // Hero Section
 function HeroSection() {
   return (
+    
     <section className="relative bg-gradient-to-b from-[#051821] to-[#0b2f3d] text-white py-24 px-6 flex flex-col lg:flex-row items-center justify-between">
       <div className="max-w-2xl space-y-6">
         <h1 className="text-4xl lg:text-5xl font-bold">Building Bridges for Global Trade</h1>
@@ -231,6 +234,15 @@ function CTASection() {
 // Main Page
 export default function AboutUsPage() {
   return (
+    <>
+    <SEO
+  title="About Somhay - Who We Are & Our Mission"
+  description="Learn about Somhay, our mission to help clients source products globally, and our step-by-step professional sourcing process."
+  keywords="Somhay about, sourcing company, product sourcing services, 1688 sourcing, Alibaba sourcing"
+  image="/logo.png"
+  url="https://somhay.vecel.app/about"
+/>
+
     <div className="overflow-x-hidden">
       <HeroSection />
       <ProblemSection />
@@ -239,5 +251,6 @@ export default function AboutUsPage() {
       <MissionVisionSection />
       <CTASection />
     </div>
+    </>
   );
 }

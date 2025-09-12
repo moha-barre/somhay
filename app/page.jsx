@@ -2,14 +2,23 @@ import Hero from "@/components/Hero";
 import Operation from "@/components/Operation";  // 
 import Process from "@/components/Process";
 import WhyUs from "@/components/WhyUs";
+import SEO from "@components/SEO"
 
 export default function HomePage() {
   return (
+    <>
+    <SEO
+  title="Somhay - Global Sourcing & Product Delivery Services"
+  description="Somhay helps you source products from marketplaces like 1688 and Alibaba quickly and reliably. Get high-quality products delivered to your doorstep."
+  keywords="1688 sourcing, Alibaba products, global product sourcing, Somhay delivery, order products online"
+  image="/hero.jpg"
+  url="https://somhay.vercel.app"
+/>
     <div className="bg-gray-950 text-white">
       {/* Hero Section */}
       <Hero />
 
-      {/* Operations Section (to be added later) */}
+      {/* Operations Section  */}
       <Operation /> 
 
       {/* Process Section */}
@@ -34,5 +43,6 @@ export default function HomePage() {
         </div>
       </section>
     </div>
+    </>
   );
 }

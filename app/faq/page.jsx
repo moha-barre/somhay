@@ -1,10 +1,20 @@
 
 "use client";
 import Faq from "@/components/Faq";
-import Condition from "@/components/Condition"; 
+import Condition from "@/components/Condition";
+import SEO from "@components/SEO"
 
 export default function FaqPage() {
+  
   return (
+    <>
+    <SEO
+  title="Somhay FAQ & Terms - Sourcing & Delivery Information"
+  description="Find answers to common questions about sourcing products from 1688 and Alibaba, delivery times, and Somhay's terms and conditions."
+  keywords="Somhay FAQ, terms and conditions, 1688 sourcing questions, Alibaba sourcing FAQ, delivery policies"
+  image="/images/faq.jpg"
+  url="https://somhay.vercel.app/faq"
+/>
     <div className="bg-white">
       {/* Page Hero */}
       <section className="text-center py-12 bg-gray-100">
@@ -18,5 +28,6 @@ export default function FaqPage() {
       {/* Policies Section */}
       <Condition />
     </div>
+    </>
   );
 }
