@@ -214,28 +214,31 @@ function CTASection() {
   return (
     <section className="py-16 bg-form text-white">
       <div className="max-w-4xl mx-auto px-6 text-center">
-        <h2 className="text-3xl font-bold mb-6">Join Us in Building the Future of Trade</h2>
+        <h2 className="text-3xl font-bold mb-6">
+          Join Us in Building the Future of Trade
+        </h2>
         <p className="text-xl text-gray-300 mb-8">
           We welcome investors and partners who share our belief that when barriers fall, opportunities rise.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button className="bg-brand hover:bg-blue-400 text-white px-8 py-3 rounded-lg font-semibold transition">
-             <a href="/contact">
-            Become a Partener
-            <a/>
-          </button>
-          <button className="border border-teal-400 text-teal-400 hover:bg-teal-400 hover:text-white px-8 py-3 rounded-lg font-semibold transition">
-                       <a href="https://api.whatsapp.com/send?phone=252770722363&text=Hello%20Somhay%20team%2C%20I%20am%20interested%20in%20this%20product%3A%20[PRODUCT_URL]%2E%20Could%20you%20please%20provide%20details%20on%20pricing%2C%20minimum%20order%20quantity%2C%20and%20delivery%3F%20Thank%20you%21">
+          <a
+            href="/contact"
+            className="bg-brand hover:bg-blue-400 text-white px-8 py-3 rounded-lg font-semibold transition inline-block text-center"
+          >
+            Become a Partner
+          </a>
+
+          <a
+            href="https://api.whatsapp.com/send?phone=252770722363&text=Hello%20Somhay%20team%2C%20I%20am%20interested%20in%20this%20product%3A%20[PRODUCT_URL]%2E%20Could%20you%20please%20provide%20details%20on%20pricing%2C%20minimum%20order%20quantity%2C%20and%20delivery%3F%20Thank%20you%21"
+            className="border border-teal-400 text-teal-400 hover:bg-teal-400 hover:text-white px-8 py-3 rounded-lg font-semibold transition inline-block text-center"
+          >
             Contact our Team
-            <a/>
-            
-          </button>
+          </a>
         </div>
       </div>
     </section>
   );
 }
-
 // Main Page
 export default function AboutUsPage() {
   return (
