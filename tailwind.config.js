@@ -12,7 +12,7 @@ export default {
         prime: "#000000",   // Dark Black
         back: "#232f3e",    // Background
         type: "#6cace4",    // Typography Accent
-        form: "#1f3152",    // Form Blue
+        form: "#3c63aa",    // Form Blue
       },
     },
   },

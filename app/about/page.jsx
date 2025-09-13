@@ -8,19 +8,19 @@ import SEO from "@/components/SEO"
 function HeroSection() {
   return (
     
-    <section className="relative bg-gradient-to-b from-[#051821] to-[#0b2f3d] text-white py-24 px-6 flex flex-col lg:flex-row items-center justify-between">
+    <section className="relative bg-gradient-to-b from-[#3c63aa] to-[#0b2f3d] text-white py-24 px-6 flex flex-col lg:flex-row items-center justify-between">
       <div className="max-w-2xl space-y-6">
         <h1 className="text-4xl lg:text-5xl font-bold">Building Bridges for Global Trade</h1>
         <p className="text-lg lg:text-xl text-gray-300">
           Somhay provides a trusted pathway that allows East African entrepreneurs to focus on growth while we handle sourcing, logistics, and delivery.
         </p>
         <div className="flex gap-4">
-          <button className="bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-lg font-semibold transition">
+          <button className="bg-brand hover:bg-blue-400 text-white px-6 py-3 rounded-lg font-semibold transition">
             Partner With Us
           </button>
           <button
             onClick={() => window.scrollTo({ top: 800, behavior: "smooth" })} // scroll to Our Story
-            className="border border-teal-400 text-teal-400 hover:bg-teal-400 hover:text-white px-6 py-3 rounded-lg font-semibold transition"
+            className="border border-blue-500 text-blue-600 hover:bg-blue-400 hover:text-white px-6 py-3 rounded-lg font-semibold transition"
           >
             Learn More
           </button>
@@ -106,7 +106,7 @@ function SolutionSection() {
           <div className="lg:w-1/2 space-y-6">
             <div className="flex items-start gap-4">
               <div className="bg-teal-100 w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0">
-                <Package className="text-teal-600 w-5 h-5" />
+                <Package className="text-brand w-5 h-5" />
               </div>
               <div>
                 <h3 className="text-xl font-semibold mb-2">Streamlined Sourcing</h3>
@@ -117,7 +117,7 @@ function SolutionSection() {
             </div>
             <div className="flex items-start gap-4">
               <div className="bg-teal-100 w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0">
-                <Globe className="text-teal-600 w-5 h-5" />
+                <Globe className="text-brand w-5 h-5" />
               </div>
               <div>
                 <h3 className="text-xl font-semibold mb-2">End-to-End Logistics</h3>
@@ -128,7 +128,7 @@ function SolutionSection() {
             </div>
             <div className="flex items-start gap-4">
               <div className="bg-teal-100 w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0">
-                <Shield className="text-teal-600 w-5 h-5" />
+                <Shield className="text-brand w-5 h-5" />
               </div>
               <div>
                 <h3 className="text-xl font-semibold mb-2">Secure Payments</h3>
@@ -182,7 +182,7 @@ function MissionVisionSection() {
   return (
     <section className="py-16 bg-white text-[#051821]">
       <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <div className="bg-teal-50 p-8 rounded-xl border border-teal-100">
+        <div className="bg-blue-300 p-8 rounded-xl border border-teal-100">
           <div className="flex items-center gap-4 mb-6">
             <div className="bg-teal-600 w-12 h-12 rounded-lg flex items-center justify-center">
               <Target className="text-white w-6 h-6" />
@@ -193,7 +193,7 @@ function MissionVisionSection() {
             Deliver safe, accessible, and smart trade solutions that empower East African businesses to compete internationally.
           </p>
         </div>
-        <div className="bg-teal-50 p-8 rounded-xl border border-teal-100">
+        <div className="bg-blue-300 p-8 rounded-xl border border-teal-100">
           <div className="flex items-center gap-4 mb-6">
             <div className="bg-teal-600 w-12 h-12 rounded-lg flex items-center justify-center">
               <Sunrise className="text-white w-6 h-6" />
@@ -212,18 +212,23 @@ function MissionVisionSection() {
 // Call to Action Section
 function CTASection() {
   return (
-    <section className="py-16 bg-[#0b2f3d] text-white">
+    <section className="py-16 bg-form text-white">
       <div className="max-w-4xl mx-auto px-6 text-center">
         <h2 className="text-3xl font-bold mb-6">Join Us in Building the Future of Trade</h2>
         <p className="text-xl text-gray-300 mb-8">
           We welcome investors and partners who share our belief that when barriers fall, opportunities rise.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3 rounded-lg font-semibold transition">
-            Become a Partner
+          <button className="bg-brand hover:bg-blue-400 text-white px-8 py-3 rounded-lg font-semibold transition">
+             <a href="/contact">
+            Become a Partener
+            <a/>
           </button>
           <button className="border border-teal-400 text-teal-400 hover:bg-teal-400 hover:text-white px-8 py-3 rounded-lg font-semibold transition">
-            Contact Our Team
+                       <a href="https://api.whatsapp.com/send?phone=252770722363&text=Hello%20Somhay%20team%2C%20I%20am%20interested%20in%20this%20product%3A%20[PRODUCT_URL]%2E%20Could%20you%20please%20provide%20details%20on%20pricing%2C%20minimum%20order%20quantity%2C%20and%20delivery%3F%20Thank%20you%21">
+            Contact our Team
+            <a/>
+            
           </button>
         </div>
       </div>
