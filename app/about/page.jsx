@@ -182,7 +182,7 @@ function MissionVisionSection() {
   return (
     <section className="py-16 bg-white text-[#051821]">
       <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <div className="bg-blue-300 p-8 rounded-xl border border-teal-100">
+        <div className="bg-gray-700 p-8 rounded-xl border border-teal-100">
           <div className="flex items-center gap-4 mb-6">
             <div className="bg-teal-600 w-12 h-12 rounded-lg flex items-center justify-center">
               <Target className="text-white w-6 h-6" />
@@ -193,7 +193,7 @@ function MissionVisionSection() {
             Deliver safe, accessible, and smart trade solutions that empower East African businesses to compete internationally.
           </p>
         </div>
-        <div className="bg-blue-300 p-8 rounded-xl border border-teal-100">
+        <div className="bg-gray-700 p-8 rounded-xl border border-teal-100">
           <div className="flex items-center gap-4 mb-6">
             <div className="bg-teal-600 w-12 h-12 rounded-lg flex items-center justify-center">
               <Sunrise className="text-white w-6 h-6" />
