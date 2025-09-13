@@ -60,7 +60,7 @@ export default function Operation() {
   ];
 
   return (
-    <section className="relative w-full py-16 bg-gray-950 text-white">
+    <section className="relative w-full py-16 bg-prime text-white">
       {/* Header */}
       <div className="max-w-3xl mx-auto text-center mb-12">
         <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">

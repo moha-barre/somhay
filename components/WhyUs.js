@@ -37,7 +37,7 @@ export default function WhyUs() {
   ];
 
   return (
-    <section className="bg-[#051821] text-white py-16 px-6 md:px-16">
+    <section className="bg-form text-white py-16 px-6 md:px-16">
       <div className="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center gap-12">
         
         {/* Text Content */}

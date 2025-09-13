@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="bg-prime text-white py-16">
+    <section className="bg-back text-white py-16">
       <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
         
         {/* Left Illustration */}
@@ -40,13 +40,13 @@ export default function Hero() {
           <div className="mt-8 flex flex-col sm:flex-row gap-4 sm:justify-start justify-center">
             <a
               href="/contact"
-              className="bg-[#477CAA] hover:bg-[#35607C] text-white px-6 py-3 rounded-lg font-medium text-lg transition"
+              className="bg-brand hover:bg-[#35607C] text-white px-6 py-3 rounded-lg font-medium text-lg transition"
             >
               Get Started
             </a>
             <a
               href="/about"
-              className="bg-gray-800 hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-medium text-lg transition"
+              className="bg-form hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-medium text-lg transition"
             >
               Discover More..
             </a>

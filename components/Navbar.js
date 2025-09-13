@@ -17,7 +17,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <nav className="bg-gray-900 text-white shadow-md sticky top-0 z-50">
+    <nav className="bg-form text-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2">
@@ -43,8 +43,8 @@ export default function Navbar() {
 
           {/* CTA Button */}
           <Link
-            href="/contact"
-            className="ml-4 px-4 py-2 rounded-lg bg-[#4169E1] hover:bg-blue-600 text-white font-medium transition"
+            href="https://api.whatsapp.com/send?phone=252770722363&text=Hello%20Somhay%20team%2C%20I%20am%20interested%20in%20this%20product%3A%20[PRODUCT_URL]%2E%20Could%20you%20please%20provide%20details%20on%20pricing%2C%20minimum%20order%20quantity%2C%20and%20delivery%3F%20Thank%20you%21"
+            className="ml-4 px-4 py-2 rounded-lg bg-brand hover:bg-blue-600 text-white font-medium transition"
           >
             Chat Now
           </Link>

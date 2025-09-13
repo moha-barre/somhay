@@ -43,7 +43,7 @@ export default function Process() {
   ];
 
   return (
-    <section className="bg-gray-950 text-white py-20">
+    <section className="bg-back text-white py-20">
       <div className="max-w-6xl mx-auto px-6 text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-14 tracking-tight">
           How Somhay Works
