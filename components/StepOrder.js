@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { supabase } from "@/lib/supabase";
 
 export default function MultiStepOrderForm() {
   const [step, setStep] = useState(1);
@@ -26,16 +27,72 @@ export default function MultiStepOrderForm() {
     const { name, value, files } = e.target;
     setForm({ ...form, [name]: files ? files[0] : value });
   };
-
+  
+  
   const nextStep = () => setStep((prev) => prev + 1);
   const prevStep = () => setStep((prev) => prev - 1);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Final Form Data:", form);
-    alert("✅ Order submitted successfully!");
-  };
+  const handleSubmit = async (e) => {
+  e.preventDefault();
 
+  let productImageUrl = null;
+  if (form.productImage) {
+    const file = form.productImage;
+    const ext = file.name.split('.').pop();
+    const filename = `${Date.now()}.${ext}`;
+    const { error: uploadError } = await supabase.storage
+      .from('order-images')
+      .upload(filename, file);
+
+    if (!uploadError) {
+      
+      productImageUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/order-images/${filename}`;
+    } else {
+      console.error('Image upload error', uploadError);
+    }
+  }
+
+  const { error } = await supabase.from("orders").insert([
+    {
+      product_image: productImageUrl,
+      product_name: form.productName,
+      product_url: form.productUrl,
+      quantity: parseInt(form.quantity || 0),
+      order_type: form.orderType,
+      shipping_method: form.shippingMethod,
+      notes: form.notes,
+      full_name: form.fullName,
+      business_name: form.businessName,
+      location: form.location,
+      email: form.email,
+      phone: form.phone,
+    },
+  ]);
+
+  if (error) {
+    console.error("❌ Error inserting order:", error);
+    alert("Something went wrong, please try again.");
+    return;
+  }
+
+  alert("✅ Order submitted successfully!");
+  // reset form & step (same as your reset)
+  setForm({
+    productImage: null,
+    productName: "",
+    productUrl: "",
+    quantity: "",
+    orderType: "normal",
+    shippingMethod: "air",
+    notes: "",
+    fullName: "",
+    businessName: "",
+    location: "",
+    email: "",
+    phone: "",
+  });
+  setStep(1);
+};
   // Validation for each step
   const validateStep = () => {
     if (step === 1) {
@@ -300,3 +357,7 @@ export default function MultiStepOrderForm() {
     </div>
   );
 }
+
+
+
+
