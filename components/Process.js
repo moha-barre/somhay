@@ -1,30 +1,57 @@
 import { ShoppingCart, MessageCircle, CreditCard } from "lucide-react";
+import Link from "next/link";
 
 export default function Process() {
   const steps = [
     {
       id: 1,
       title: "Pick Your Favorite Product",
-      desc: "Find the item you love—fashion, electronics, or business supplies—on trusted marketplaces like Alibaba or Shein. Choose what suits you best!",
+      desc: (
+        <>
+          Browse trusted marketplaces like{" "}
+          <a
+            href="https://www.alibaba.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 hover:underline"
+          >
+            Alibaba
+          </a>{" "}
+          or{" "}
+          <a
+            href="https://www.shein.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-pink-500 hover:underline"
+          >
+            Shein
+          </a>{" "}
+          and select what suits you best—fashion, electronics, or business
+          supplies.
+        </>
+      ),
       icon: <ShoppingCart className="w-10 h-10 text-blue-500 mb-4" />,
     },
     {
       id: 2,
-      title: "Choose How to Order",
+      title: "Place Your Order Easily",
       desc: (
         <>
-          You can place your order in the way that feels easiest for you:
+          Choose the most convenient way for you:
           <ul className="list-disc list-inside mt-3 space-y-2 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
             <li>
               <strong>Order Online:</strong>{" "}
-              <a href="/order" className="text-blue-500 hover:underline">
-                Visit our order page
-              </a>{" "}
-              and fill in your details. Submit in just a few clicks!
+              <Link
+                href="/order"
+                className="inline-block px-3 py-1 text-sm font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600 transition"
+              >
+                Go to Order Page
+              </Link>{" "}
+              and complete your details in just a few clicks.
             </li>
             <li>
               <strong>Contact Us Directly:</strong>{" "}
-              Send the product link or details via{" "}
+              Send the product link via{" "}
               <a
                 href="https://wa.me/252770722363"
                 target="_blank"
@@ -34,10 +61,13 @@ export default function Process() {
                 WhatsApp
               </a>{" "}
               or{" "}
-              <a href="mailto:info@somhay.com" className="text-blue-500 hover:underline">
+              <a
+                href="mailto:info@somhay.com"
+                className="text-blue-500 hover:underline"
+              >
                 Email
               </a>
-              . We'll quickly confirm availability, price, and shipping.
+              . We&apos;ll quickly confirm availability, price, and shipping.
             </li>
           </ul>
         </>
@@ -47,7 +77,12 @@ export default function Process() {
     {
       id: 3,
       title: "Confirm & Receive Your Order",
-      desc: "After confirming, make your payment using your preferred method. Then relax—we’ll take care of everything from purchase to delivery right to your door.",
+      desc: (
+        <>
+          Once confirmed, make your payment using your preferred method. Then
+          relax—we&apos;ll handle everything from purchase to doorstep delivery.
+        </>
+      ),
       icon: <CreditCard className="w-10 h-10 text-purple-500 mb-4" />,
     },
   ];
@@ -63,11 +98,17 @@ export default function Process() {
           {steps.map((step) => (
             <div
               key={step.id}
-              className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-md border border-gray-200 dark:border-gray-700 hover:border-blue-500 hover:shadow-lg transition duration-300 text-left"
+              className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-md border border-gray-200 dark:border-gray-700 hover:border-blue-500/60 hover:shadow-xl transition duration-300 text-left group"
             >
-              <div>{step.icon}</div>
-              <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">{step.title}</h3>
-              <div className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">{step.desc}</div>
+              <div className="flex items-center justify-center w-16 h-16 rounded-full bg-blue-50 dark:bg-gray-700 mb-4 group-hover:scale-110 transition">
+                {step.icon}
+              </div>
+              <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
+                {step.title}
+              </h3>
+              <div className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+                {step.desc}
+              </div>
             </div>
           ))}
         </div>
