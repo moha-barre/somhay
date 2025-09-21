@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import SEO from "@/components/SEO"
 import Process from "@/components/Process";
-import Faq from "@/components/Faq;
+import Faq from "@/components/Faq";
 
 import { Mail, Phone, Instagram, Facebook, Linkedin, MessageCircle } from "lucide-react";
 
