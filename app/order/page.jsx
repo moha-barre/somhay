@@ -1,5 +1,6 @@
 import Image from "next/image";
 import MultiStepOrderForm from "@/components/StepOrder";
+import Condition from "@/components/Condition";
 
 export default function OrderPage() {
   return (
@@ -21,6 +22,7 @@ export default function OrderPage() {
         </div>
 
         <MultiStepOrderForm />
+        <Condition />
       </div>
     </main>
   );

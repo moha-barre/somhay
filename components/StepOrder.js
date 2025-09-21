@@ -32,32 +32,37 @@ export default function MultiStepOrderForm() {
   const nextStep = () => setStep((prev) => prev + 1);
   const prevStep = () => setStep((prev) => prev - 1);
 
-  const handleSubmit = async (e) => {
-  e.preventDefault();
+const [submitting, setSubmitting] = useState(false)
+const [success, setSuccess] = useState(false)
+const [errorMsg, setErrorMsg] = useState("")
 
-  let productImageUrl = null;
+const handleSubmit = async (e) => {
+  e.preventDefault()
+  setSubmitting(true)
+  setSuccess(false)
+  setErrorMsg("")
+
+  let imageUrl = null
   if (form.productImage) {
-    const file = form.productImage;
-    const ext = file.name.split('.').pop();
-    const filename = `${Date.now()}.${ext}`;
+    const fileName = `${Date.now()}-${form.productImage.name}`
     const { error: uploadError } = await supabase.storage
-      .from('order-images')
-      .upload(filename, file);
-
-    if (!uploadError) {
-      
-      productImageUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/order-images/${filename}`;
-    } else {
-      console.error('Image upload error', uploadError);
+      .from("order-images")
+      .upload(fileName, form.productImage)
+    if (uploadError) {
+      setErrorMsg(uploadError.message)
+      setSubmitting(false)
+      return
     }
+    const { data } = supabase.storage.from("order-images").getPublicUrl(fileName)
+    imageUrl = data.publicUrl
   }
 
   const { error } = await supabase.from("orders").insert([
     {
-      product_image: productImageUrl,
+      product_image: imageUrl,
       product_name: form.productName,
       product_url: form.productUrl,
-      quantity: parseInt(form.quantity || 0),
+      quantity: parseInt(form.quantity),
       order_type: form.orderType,
       shipping_method: form.shippingMethod,
       notes: form.notes,
@@ -67,32 +72,31 @@ export default function MultiStepOrderForm() {
       email: form.email,
       phone: form.phone,
     },
-  ]);
+  ])
 
   if (error) {
-    console.error("❌ Error inserting order:", error);
-    alert("Something went wrong, please try again.");
-    return;
+    setErrorMsg(error.message)
+  } else {
+    setSuccess(true)
+    setForm({
+      productImage: null,
+      productName: "",
+      productUrl: "",
+      quantity: "",
+      orderType: "normal",
+      shippingMethod: "air",
+      notes: "",
+      fullName: "",
+      businessName: "",
+      location: "",
+      email: "",
+      phone: "",
+    })
+    setStep(1)
   }
 
-  alert("✅ Order submitted successfully!");
-  // reset form & step (same as your reset)
-  setForm({
-    productImage: null,
-    productName: "",
-    productUrl: "",
-    quantity: "",
-    orderType: "normal",
-    shippingMethod: "air",
-    notes: "",
-    fullName: "",
-    businessName: "",
-    location: "",
-    email: "",
-    phone: "",
-  });
-  setStep(1);
-};
+  setSubmitting(false)
+}
   // Validation for each step
   const validateStep = () => {
     if (step === 1) {
@@ -126,12 +130,40 @@ export default function MultiStepOrderForm() {
               Product Details
             </h2>
 
-            <input
-              type="file"
-              name="productImage"
-              onChange={handleChange}
-              className="w-full border rounded-lg p-2"
-            />
+            {/* Product Image Upload */}
+<div className="flex flex-col items-center">
+  <label
+    htmlFor="productImage"
+    className="w-full border-2 border-dashed border-gray-300 rounded-xl p-6 flex flex-col items-center justify-center cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition"
+  >
+    {form.productImage ? (
+      <img
+        src={URL.createObjectURL(form.productImage)}
+        alt="Preview"
+        className="w-32 h-32 object-cover rounded-lg mb-2"
+      />
+    ) : (
+      <span className="text-gray-500 text-sm">📷 Click to upload image</span>
+    )}
+    <input
+      type="file"
+      id="productImage"
+      name="productImage"
+      accept="image/*"
+      onChange={handleChange}
+      className="hidden"
+    />
+  </label>
+  {form.productImage && (
+    <button
+      type="button"
+      onClick={() => setForm({ ...form, productImage: null })}
+      className="mt-2 text-xs text-red-500 hover:underline"
+    >
+      Remove
+    </button>
+  )}
+</div>
 
             <input
               type="text"
@@ -344,12 +376,19 @@ export default function MultiStepOrderForm() {
               >
                 Back
               </button>
-              <button
-                type="submit"
-                className="bg-green-600 text-white py-2 px-6 rounded-lg"
-              >
-                Submit Order
-              </button>
+             <button
+  type="submit"
+  className={`w-full py-2 rounded-lg text-white ${
+    submitting ? "bg-gray-400 cursor-not-allowed" : "bg-green-600 hover:bg-green-700"
+  }`}
+  disabled={submitting}
+>
+  {submitting ? "Submitting..." : "Submit Order"}
+</button>
+
+{/* Feedback messages */}
+{success && <p className="text-green-600 mt-2">✅ Order submitted successfully!</p>}
+{errorMsg && <p className="text-red-500 mt-2">❌ {errorMsg}</p>}
             </div>
           </div>
         )}

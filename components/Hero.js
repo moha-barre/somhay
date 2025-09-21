@@ -40,13 +40,13 @@ export default function Hero() {
           <div className="mt-8 flex flex-col sm:flex-row gap-4 sm:justify-start justify-center">
             <a
               href="/contact"
-              className="bg-brand hover:bg-[#35607C] text-white px-6 py-3 rounded-lg font-medium text-lg transition"
+              className="bg-blue-500 hover:bg-[#35607C] text-white px-6 py-3 rounded-lg font-medium text-lg transition"
             >
               Get Started
             </a>
             <a
               href="/about"
-              className="bg-form hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-medium text-lg transition"
+              className="bg-gray-700 hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-medium text-lg transition"
             >
               Discover More..
             </a>
