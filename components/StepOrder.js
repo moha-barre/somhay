@@ -82,13 +82,13 @@ export default function MultiStepOrderForm() {
 
     const { error } = await supabase.from("orders").insert([
       {
-        product_image: imageUrl,
+        product_image: imageUrl || null,
         product_name: form.productName,
-        product_url: form.productUrl,
+        product_url: form.productUrl || null,
         quantity: parseInt(form.quantity),
         order_type: form.orderType,
         shipping_method: form.shippingMethod,
-        notes: form.notes,
+        notes: form.notes || null,
         full_name: form.fullName,
         business_name: form.businessName,
         location: form.location,
