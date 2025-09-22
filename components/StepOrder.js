@@ -14,7 +14,6 @@ export default function MultiStepOrderForm() {
     orderType: "normal",
     shippingMethod: "air",
     notes: "",
-
     // Person Info
     fullName: "",
     businessName: "",
@@ -23,89 +22,104 @@ export default function MultiStepOrderForm() {
     phone: "",
   });
 
+  const [preview, setPreview] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-    setForm({ ...form, [name]: files ? files[0] : value });
+    if (files) {
+      setForm({ ...form, [name]: files[0] });
+      setPreview(URL.createObjectURL(files[0]));
+    } else {
+      setForm({ ...form, [name]: value });
+    }
   };
-  
-  
+
   const nextStep = () => setStep((prev) => prev + 1);
   const prevStep = () => setStep((prev) => prev - 1);
 
-const [submitting, setSubmitting] = useState(false)
-const [success, setSuccess] = useState(false)
-const [errorMsg, setErrorMsg] = useState("")
-
-const handleSubmit = async (e) => {
-  e.preventDefault()
-  setSubmitting(true)
-  setSuccess(false)
-  setErrorMsg("")
-
-  let imageUrl = null
-  if (form.productImage) {
-    const fileName = `${Date.now()}-${form.productImage.name}`
-    const { error: uploadError } = await supabase.storage
-      .from("order-images")
-      .upload(fileName, form.productImage)
-    if (uploadError) {
-      setErrorMsg(uploadError.message)
-      setSubmitting(false)
-      return
-    }
-    const { data } = supabase.storage.from("order-images").getPublicUrl(fileName)
-    imageUrl = data.publicUrl
-  }
-
-  const { error } = await supabase.from("orders").insert([
-    {
-      product_image: imageUrl,
-      product_name: form.productName,
-      product_url: form.productUrl,
-      quantity: parseInt(form.quantity),
-      order_type: form.orderType,
-      shipping_method: form.shippingMethod,
-      notes: form.notes,
-      full_name: form.fullName,
-      business_name: form.businessName,
-      location: form.location,
-      email: form.email,
-      phone: form.phone,
-    },
-  ])
-
-  if (error) {
-    setErrorMsg(error.message)
-  } else {
-    setSuccess(true)
-    setForm({
-      productImage: null,
-      productName: "",
-      productUrl: "",
-      quantity: "",
-      orderType: "normal",
-      shippingMethod: "air",
-      notes: "",
-      fullName: "",
-      businessName: "",
-      location: "",
-      email: "",
-      phone: "",
-    })
-    setStep(1)
-  }
-
-  setSubmitting(false)
-}
-  // Validation for each step
   const validateStep = () => {
-    if (step === 1) {
-      return form.productName && form.quantity;
-    }
-    if (step === 2) {
-      return form.fullName && form.location && form.email && form.phone;
-    }
+    if (step === 1) return form.productName && form.quantity;
+    if (step === 2) return form.fullName && form.location && form.email && form.phone;
     return true;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitting(true);
+    setSuccess(false);
+    setErrorMsg("");
+
+    let imageUrl = null;
+
+    if (form.productImage) {
+      const fileName = `${Date.now()}-${form.productImage.name}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from("order-images")
+        .upload(fileName, form.productImage);
+
+      if (uploadError) {
+        setErrorMsg(uploadError.message);
+        setSubmitting(false);
+        return;
+      }
+
+      const { data, error: urlError } = supabase.storage
+        .from("order-images")
+        .getPublicUrl(fileName);
+
+      if (urlError) {
+        setErrorMsg(urlError.message);
+        setSubmitting(false);
+        return;
+      }
+
+      imageUrl = data.publicUrl;
+    }
+
+    const { error } = await supabase.from("orders").insert([
+      {
+        product_image: imageUrl,
+        product_name: form.productName,
+        product_url: form.productUrl,
+        quantity: parseInt(form.quantity),
+        order_type: form.orderType,
+        shipping_method: form.shippingMethod,
+        notes: form.notes,
+        full_name: form.fullName,
+        business_name: form.businessName,
+        location: form.location,
+        email: form.email,
+        phone: form.phone,
+      },
+    ]);
+
+    if (error) {
+      setErrorMsg(error.message);
+    } else {
+      setSuccess(true);
+      setForm({
+        productImage: null,
+        productName: "",
+        productUrl: "",
+        quantity: "",
+        orderType: "normal",
+        shippingMethod: "air",
+        notes: "",
+        fullName: "",
+        businessName: "",
+        location: "",
+        email: "",
+        phone: "",
+      });
+      setPreview(null);
+      setStep(1);
+    }
+
+    setSubmitting(false);
   };
 
   return (
@@ -130,40 +144,43 @@ const handleSubmit = async (e) => {
               Product Details
             </h2>
 
-            {/* Product Image Upload */}
-<div className="flex flex-col items-center">
-  <label
-    htmlFor="productImage"
-    className="w-full border-2 border-dashed border-gray-300 rounded-xl p-6 flex flex-col items-center justify-center cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition"
-  >
-    {form.productImage ? (
-      <img
-        src={URL.createObjectURL(form.productImage)}
-        alt="Preview"
-        className="w-32 h-32 object-cover rounded-lg mb-2"
-      />
-    ) : (
-      <span className="text-gray-500 text-sm">📷 Click to upload image</span>
-    )}
-    <input
-      type="file"
-      id="productImage"
-      name="productImage"
-      accept="image/*"
-      onChange={handleChange}
-      className="hidden"
-    />
-  </label>
-  {form.productImage && (
-    <button
-      type="button"
-      onClick={() => setForm({ ...form, productImage: null })}
-      className="mt-2 text-xs text-red-500 hover:underline"
-    >
-      Remove
-    </button>
-  )}
-</div>
+            {/* Image Upload */}
+            <div className="flex flex-col items-center">
+              <label
+                htmlFor="productImage"
+                className="w-full border-2 border-dashed border-gray-300 rounded-xl p-6 flex flex-col items-center justify-center cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition"
+              >
+                {preview ? (
+                  <img
+                    src={preview}
+                    alt="Preview"
+                    className="w-32 h-32 max-h-40 object-contain rounded-lg mb-2"
+                  />
+                ) : (
+                  <span className="text-gray-500 text-sm">📷 Click to upload image</span>
+                )}
+                <input
+                  type="file"
+                  id="productImage"
+                  name="productImage"
+                  accept="image/*"
+                  onChange={handleChange}
+                  className="hidden"
+                />
+              </label>
+              {preview && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setForm({ ...form, productImage: null });
+                    setPreview(null);
+                  }}
+                  className="mt-2 text-xs text-red-500 hover:underline"
+                >
+                  Remove
+                </button>
+              )}
+            </div>
 
             <input
               type="text"
@@ -267,7 +284,7 @@ const handleSubmit = async (e) => {
             <input
               type="text"
               name="location"
-              placeholder="Location*eg: Banadir_Yaqshid_fagax"
+              placeholder="Location* eg: Banadir_Yaqshid_fagax"
               value={form.location}
               onChange={handleChange}
               className="w-full border rounded-lg p-2"
@@ -368,7 +385,7 @@ const handleSubmit = async (e) => {
               </div>
             </div>
 
-            <div className="flex justify-between">
+            <div className="flex flex-col md:flex-row justify-between gap-2 mt-2">
               <button
                 type="button"
                 onClick={prevStep}
@@ -376,27 +393,24 @@ const handleSubmit = async (e) => {
               >
                 Back
               </button>
-             <button
-  type="submit"
-  className={`w-full py-2 rounded-lg text-white ${
-    submitting ? "bg-gray-400 cursor-not-allowed" : "bg-green-600 hover:bg-green-700"
-  }`}
-  disabled={submitting}
->
-  {submitting ? "Submitting..." : "Submit Order"}
-</button>
 
-{/* Feedback messages */}
-{success && <p className="text-green-600 mt-2">✅ Order submitted successfully!</p>}
-{errorMsg && <p className="text-red-500 mt-2">❌ {errorMsg}</p>}
+              <button
+                type="submit"
+                className={`w-full md:w-auto py-2 rounded-lg text-white ${
+                  submitting ? "bg-gray-400 cursor-not-allowed" : "bg-green-600 hover:bg-green-700"
+                }`}
+                disabled={submitting}
+              >
+                {submitting ? "Submitting..." : "Submit Order"}
+              </button>
             </div>
+
+            {/* Feedback */}
+            {success && <p className="text-green-600 mt-2">✅ Order submitted successfully!</p>}
+            {errorMsg && <p className="text-red-500 mt-2">❌ {errorMsg}</p>}
           </div>
         )}
       </form>
     </div>
   );
-}
-
-
-
-
+               }
